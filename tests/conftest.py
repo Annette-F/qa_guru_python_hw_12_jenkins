@@ -5,6 +5,8 @@ from selenium.webdriver.chrome.options import Options
 
 from utils import attach
 
+DEFAULT_BROWSER_VERSION = '100.0'
+
 
 def pytest_addoption(parser):
     parser.addoption(
@@ -14,7 +16,8 @@ def pytest_addoption(parser):
 
 @pytest.fixture(scope='function', autouse=True)
 def setting_browser(request):
-    browser_version = request.config.getoption("--browser_version")
+    browser_version = request.config.getoption('--browser_version')
+    browser_version = browser_version if browser_version != "" else DEFAULT_BROWSER_VERSION
     browser.config.base_url = 'https://demoqa.com'
     browser.config.window_width = 1920
     browser.config.window_height = 1080
