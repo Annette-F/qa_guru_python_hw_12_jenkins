@@ -17,9 +17,11 @@ def pytest_addoption(parser):
         default='100.0'
     )
 
+
 @pytest.fixture(scope='session', autouse=True)
 def load_env():
     load_dotenv()
+
 
 @pytest.fixture(scope='function', autouse=True)
 def setting_browser(request):
